@@ -1,6 +1,5 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -11,15 +10,17 @@ st.write(
   """
 )
   
-   #puts a selectbox onto screen
+#puts a selectbox onto screen
 #option = st.selectbox(
      # "What is your favourite froot?",
     # ("Banana", "Strawberries", "Peaches"),
 # )
 
 # st.write("Your favorite froot is:", option)
- 
+
+cnx =st.connection("snowflake")
 session = get_active_session()
+#session = cnx.session()
 #gets all data from the table
 #my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
