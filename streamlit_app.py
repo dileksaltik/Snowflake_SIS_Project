@@ -19,8 +19,8 @@ st.write(
 # st.write("Your favorite froot is:", option)
 
 cnx =st.connection("snowflake")
-session = get_active_session()
-#session = cnx.session()
+#session = get_active_session()
+session = cnx.session()
 #gets all data from the table
 #my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
